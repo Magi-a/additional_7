@@ -167,7 +167,6 @@ module.exports = function solveSudoku(matrix) {
           for(let j = 0; j < 9; j++){
             for(let i = 0; i < 9; i++){
                 if(tempSudoku[i][j][1].length === n){
-                  //console.log(tempSudoku[i][j][1]);
                   return [i,j]
                 }
             }
@@ -180,7 +179,6 @@ module.exports = function solveSudoku(matrix) {
           for(let j = 8; j >=0; j--){
             for(let i = 0; i < 9; i++){
                 if(tempSudoku[i][j][1].length === n){
-                  //console.log(tempSudoku[i][j][1]);
                   return [i,j]
                 }
             }
