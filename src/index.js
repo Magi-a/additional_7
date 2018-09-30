@@ -89,9 +89,8 @@ module.exports = function solveSudoku(matrix) {
           freeNumbers = sudokuLine
             .filter(el => a.indexOf(el) == -1 && b.indexOf(el) == -1 && c.indexOf(el) == -1);
 
-            
           if(freeNumbers.length === 0){
-            console.log('error');
+            //console.log('error');
             /*console.log(tempMatrix);
             console.log('a- ' + a);
             console.log('b- ' + b);
@@ -109,16 +108,114 @@ module.exports = function solveSudoku(matrix) {
   }
 
   function shortSet(){
-    for(let n = 1; n <=9; n++){
-      for(let i = 0; i < 9; i++){
-        for(let j = 0; j < 9; j++){
-            if(tempSudoku[i][j][1].length === n){
-              //console.log(tempSudoku[i][j][1]);
-              return [i,j]
+
+    if(tr <= 80){
+      if(tr <= 20){
+        for(let n = 1; n <=9; n++){
+          for(let i = 0; i < 9; i++){
+            for(let j = 0; j < 9; j++){
+                if(tempSudoku[i][j][1].length === n){
+                  //console.log(tempSudoku[i][j][1]);
+                  return [i,j]
+                }
             }
+          }
+        }
+      }
+
+      if(tr > 20 && tr <= 40){
+        for(let n = 1; n <=9; n++){
+          for(let i = 8; i >=0; i--){
+            for(let j = 0; j < 9; j++){
+                if(tempSudoku[i][j][1].length === n){
+                  //console.log(tempSudoku[i][j][1]);
+                  return [i,j]
+                }
+            }
+          }
+        }
+      }
+
+      if(tr > 40 && tr <= 60){
+        for(let n = 1; n <=9; n++){
+          for(let i = 8; i >=0; i--){
+            for(let j = 8; j >= 0; j--){
+                if(tempSudoku[i][j][1].length === n){
+                  //console.log(tempSudoku[i][j][1]);
+                  return [i,j]
+                }
+            }
+          }
+        }
+      }
+
+      if(tr > 60 && tr <= 80){
+        for(let n = 1; n <=9; n++){
+          for(let i = 0; i < 9; i++){
+            for(let j = 8; j >= 0; j--){
+                if(tempSudoku[i][j][1].length === n){
+                  //console.log(tempSudoku[i][j][1]);
+                  return [i,j]
+                }
+            }
+          }
+        }
+      }
+    } else {
+      if(tr <= 100){
+        for(let n = 1; n <=9; n++){
+          for(let j = 0; j < 9; j++){
+            for(let i = 0; i < 9; i++){
+                if(tempSudoku[i][j][1].length === n){
+                  //console.log(tempSudoku[i][j][1]);
+                  return [i,j]
+                }
+            }
+          }
+        }
+      }
+
+      if(tr > 100 && tr <= 120){
+        for(let n = 1; n <=9; n++){
+          for(let j = 8; j >=0; j--){
+            for(let i = 0; i < 9; i++){
+                if(tempSudoku[i][j][1].length === n){
+                  //console.log(tempSudoku[i][j][1]);
+                  return [i,j]
+                }
+            }
+          }
+        }
+      }
+
+      if(tr > 120 && tr <= 140){
+        for(let n = 1; n <=9; n++){
+          for(let j = 8; j >=0; j--){
+            for(let i = 8; i >= 0; i--){
+                if(tempSudoku[i][j][1].length === n){
+                  //console.log(tempSudoku[i][j][1]);
+                  return [i,j]
+                }
+            }
+          }
+        }
+      }
+
+      if(tr > 140 && tr <= 160){
+        for(let n = 1; n <=9; n++){
+          for(let j = 0; j < 9; j++){
+            for(let i = 8; i >= 0; i--){
+                if(tempSudoku[i][j][1].length === n){
+                  //console.log(tempSudoku[i][j][1]);
+                  return [i,j]
+                }
+            }
+          }
         }
       }
     }
+    
+    
   }
 
   function remaing(){
@@ -152,13 +249,27 @@ module.exports = function solveSudoku(matrix) {
 
   do {
 
-    if(last > 20){
+    if(last > 160){
       break;
     }
 
     var steps = 0;
-    var z = tr;
-    //copyMatrix();
+
+    ///HOT FIX ///////////////////
+    var z = 0;
+    if(tr <= 20){
+      z = tr;
+    }
+    if(tr > 20 && tr <= 40){
+      z = tr-20;
+    }
+    if(tr > 40 && tr <= 60){
+      z = tr-40;
+    }
+    if(tr > 60 && tr <= 80){
+      z = tr-60;
+    }
+    ///////////////////////
     
 
     do{
@@ -199,10 +310,12 @@ module.exports = function solveSudoku(matrix) {
       } else {
         tempMatrix[x][y] = tempSudoku[x][y][1][0];
       }
-      
+
+
+      //console.log(tempSudoku[x][y][1]);
 
       //
-      //remaing();
+      remaing();
       //console.log('-----');
   
     } while(true);
@@ -212,9 +325,9 @@ module.exports = function solveSudoku(matrix) {
       console.log('solved -' + tr);
       break;
     } else {
-      console.log('not solved - ' + tr);
+      //console.log('not solved - ' + tr);
       //console.log(tempMatrix);
-      console.log('-----------------------------------');
+      //console.log('-----------------------------------');
       clearMatrix();
       tr++;
     }
