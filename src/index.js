@@ -89,13 +89,13 @@ module.exports = function solveSudoku(matrix) {
           freeNumbers = sudokuLine
             .filter(el => a.indexOf(el) == -1 && b.indexOf(el) == -1 && c.indexOf(el) == -1);
 
-
+            
           if(freeNumbers.length === 0){
             console.log('error');
-            //console.log(tempMatrix);
-            //tempMatrix = matrix;
-            //console.log('old');
-            //console.log(tempMatrix);
+            /*console.log(tempMatrix);
+            console.log('a- ' + a);
+            console.log('b- ' + b);
+            console.log('c- ' + c);*/
             return false;
           }
 
@@ -137,10 +137,9 @@ module.exports = function solveSudoku(matrix) {
   }
   
   function isSolved(){
-    
     for(let i = 0; i < 9; i++){
       for(let j = 0; j < 9; j++){
-        if(tempSudoku[i][j][0] == 'unset'){
+        if(matrix[i][j] === 0){
           return false;
         }
       }
@@ -214,6 +213,8 @@ module.exports = function solveSudoku(matrix) {
       break;
     } else {
       console.log('not solved - ' + tr);
+      //console.log(tempMatrix);
+      console.log('-----------------------------------');
       clearMatrix();
       tr++;
     }
@@ -226,7 +227,7 @@ module.exports = function solveSudoku(matrix) {
   console.log(tempMatrix);
   console.log('-----------------------------------');
   clearMatrix();*/
-  console.log(tempMatrix);
+  //console.log(tempMatrix);
   console.log('-----------------------------------');
 
   return matrix;
